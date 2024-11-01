@@ -23,18 +23,22 @@ namespace WPFDemo_1734
             try
             {
                 // 取得資料庫連線字串
+                //使用ConfigurationManager從App.config中讀取連線字串
                 string connectionString = ConfigurationManager.ConnectionStrings["OracleDbContext"].ConnectionString;
 
+                //使用using確保使用後會釋放資源
                 using (IDbConnection db = new OracleConnection(connectionString))
                 {
-                    // 查詢 Stock 表
-                    string query = "SELECT stock_no, stock_name, low_price, high_price, modify_date, modify_user FROM Stock";
-                    List<Stock> stockList = db.Query<Stock>(query).ToList();
+                    //查詢Stock表
+                    string x = "SELECT stock_no, stock_name, low_price, high_price, modify_date, modify_user FROM Stock";
+                    //將x傳到stockList
+                    List<Stock> stockList = db.Query<Stock>(x).ToList();
 
-                    // 綁定資料到 DataGrid
+                    //將stockList綁定到WPF中的 DataGrid
                     StockDataGrid.ItemsSource = stockList;
                 }
             }
+            //Exception是.NET中所有異常類別的基類，因此這個catch區塊可以捕捉到任何未被特定類型catch區塊捕獲的錯誤
             catch (Exception ex)
             {
                 MessageBox.Show($"資料載入時發生錯誤：{ex.Message}", "錯誤", MessageBoxButton.OK, MessageBoxImage.Error);
