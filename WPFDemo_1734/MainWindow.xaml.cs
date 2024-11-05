@@ -18,11 +18,14 @@ namespace WPFDemo_1734
             LoadStockData();
         }
 
+        /// <summary>
+        /// 秀出Stock資料表資料
+        /// </summary>
         private void LoadStockData()
         {
             try
             {
-                // 取得資料庫連線字串
+                //取得資料庫連線字串
                 //使用ConfigurationManager從App.config中讀取連線字串
                 string connectionString = ConfigurationManager.ConnectionStrings["OracleDbContext"].ConnectionString;
 
@@ -31,10 +34,10 @@ namespace WPFDemo_1734
                 {
                     //查詢Stock表
                     string x = "SELECT stock_no, stock_name, low_price, high_price, modify_date, modify_user FROM Stock";
-                    //將x傳到stockList
+                    //將x傳到stockList。使用Dapper的Query<T>()方法執行SQL查詢。
                     List<Stock> stockList = db.Query<Stock>(x).ToList();
 
-                    //將stockList綁定到WPF中的 DataGrid
+                    //將stockList綁定到WPF中的DataGrid物件上
                     StockDataGrid.ItemsSource = stockList;
                 }
             }
