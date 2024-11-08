@@ -37,6 +37,7 @@ namespace WPFDemo_1734
                     //將x傳到stockList。使用Dapper的Query<T>()方法執行SQL查詢。
                     List<Stock> stockList = db.Query<Stock>(x).ToList();
 
+
                     //將stockList綁定到WPF中的DataGrid物件上
                     StockDataGrid.ItemsSource = stockList;
                 }
