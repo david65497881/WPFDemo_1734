@@ -28,7 +28,7 @@ namespace WPFDemo_1734
                 //取得資料庫連線字串
                 //使用ConfigurationManager從App.config中讀取連線字串
                 string connectionString = ConfigurationManager.ConnectionStrings["OracleDbContext"].ConnectionString;
-
+                
                 //使用using確保使用後會釋放資源
                 using (IDbConnection db = new OracleConnection(connectionString))
                 {

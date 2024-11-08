@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WPFDemo_1734.Class
 {
+    /// <summary>
+    /// Stock表單
+    /// </summary>
     public class Stock
     {
         public string Stock_No { get; set; }
